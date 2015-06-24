@@ -1,6 +1,7 @@
 #import "Aviary.h"
 #import <Cordova/CDVPlugin.h>
-#import "AFPhotoEditorController.h"
+#import <AdobeCreativeSDKFoundation/AdobeCreativeSDKFoundation.h>
+#import <AdobeCreativeSDKImage/AdobeCreativeSDKImage.h>
 
 @implementation Aviary
 
@@ -18,6 +19,7 @@
 
 - (void) show:(CDVInvokedUrlCommand*) command
 {
+  
     pluginCallbackId = command.callbackId;
     
     originalImageURI = [command.arguments objectAtIndex:0];
@@ -105,12 +107,12 @@
         [AFPhotoEditorCustomization setToolOrder:tools];
     }
     
-    self.aviary = [[AFPhotoEditorController alloc] initWithImage:image];
+    self.aviary = [[AdobeUXImageEditorViewController alloc] initWithImage:image];
     [self.aviary setDelegate:self];
     [self.viewController presentModalViewController:self.aviary animated:YES];
 }
 
--(void) photoEditor:(AFPhotoEditorController *)editor finishedWithImage:(UIImage *)image
+-(void) photoEditor:(AdobeUXImageEditorViewController *)editor finishedWithImage:(UIImage *)image
 {
     if (!editor.session.isModified) {
         [self returnSuccess:originalImageURI];
