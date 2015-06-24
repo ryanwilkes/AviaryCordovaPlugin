@@ -7,13 +7,14 @@
 
 #import <UIKit/UIKit.h>
 #import <Cordova/CDVPlugin.h>
-#import "AFPhotoEditorController.h"
+#import <AdobeCreativeSDKFoundation/AdobeCreativeSDKFoundation.h>
+#import <AdobeCreativeSDKImage/AdobeCreativeSDKImage.h>
 
-@interface Aviary : CDVPlugin <AFPhotoEditorControllerDelegate> {
-    AFPhotoEditorController* aviary;
+@interface Aviary : CDVPlugin <AdobeUXImageEditorViewControllerDelegate> {
+    AdobeUXImageEditorViewController* aviary;
 }
 
-@property (nonatomic, retain) AFPhotoEditorController *aviary;
+@property (nonatomic, retain) AdobeUXImageEditorViewController *aviary;
 @property (nonatomic, retain) NSString* pluginCallbackId;
 @property (nonatomic, retain) NSNumber* quality;
 @property (nonatomic, retain) NSString* originalImageURI;
